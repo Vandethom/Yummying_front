@@ -3,10 +3,18 @@
       <img src="../../assets/yummying.logo.svg" class="logo" alt="Vite logo" />
 
       <div class="menu_options">
-        <p>Accueil</p>
-        <p>Réservation</p>
-        <p>A propos</p>
-        <p>Mon compte</p>
+        <router-link :to="{ name: 'home'}">
+          <p>Accueil</p>
+        </router-link>
+        <router-link :to="{ name: 'reservation'}">
+          <p>Réservation</p>
+        </router-link>
+        <router-link :to="{ name: 'about'}">
+          <p>A propos</p>
+        </router-link>
+        <router-link :to="{ name: 'account'}">
+          <p>Mon compte</p>
+        </router-link>
         <img src="../../assets/basket.icon.svg" class="basket_icon" alt="Basket Icon" />
       </div>
     </div>
@@ -14,8 +22,7 @@
 
 <script lang="ts">
     export default {
-    
-}
+    }
 </script>
 
 <style lang="scss">

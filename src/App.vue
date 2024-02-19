@@ -1,21 +1,13 @@
 <script setup lang="ts">
-    import Banner       from "./components/Common/banner.vue"  
     import Footer       from "./components/Common/footer.vue"  
     import Header       from "./components/Common/header.vue"  
-    import Menu         from "./components/Menu/menu.vue"  
-    import OrderDetails from "./components/Menu/orderDetails.vue"
     //import MenuOptions   from "./components/menuOptions.vue"
 </script>
 
 <template>
     <div id="main">
       <Header />
-      <Banner />
-      <!-- <MenuOptions /> -->
-      <div class="orderContainer">
-        <Menu />
-        <OrderDetails />
-      </div>
+      <router-view />
       <Footer />
     </div>
 </template>
@@ -29,12 +21,5 @@
     .orderContainer {
       display: flex;
       justify-content: space-between;
-    }
-
-    .logo {
-      height: 6em;
-      padding: 1.5em;
-      will-change: filter;
-      transition: filter 300ms;
     }
 </style>
