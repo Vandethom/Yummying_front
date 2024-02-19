@@ -121,11 +121,18 @@ export default {
         display: grid;
         background-color: grey;
         grid-template-columns: repeat(7, 1fr);
-        gap: 40px;
+        gap: 30px;
         padding: 0 25px 0 25px;
         width: 700px;
         margin: auto;
         margin-top: 2%;
         text-align: center;
+
+        .day {
+            height: 50px;
+            padding-top: 15px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(211, 220, 50, .6)
+        }
     }
 </style>
