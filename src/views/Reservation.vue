@@ -1,33 +1,28 @@
 <template>
-    <Calendar />
+    <div class="reservation">
+        <Calendar />
+        <ReservationPanel />
+    </div>
 </template>
 
 <script lang="ts">
-    import Calendar from "../components/Reservation/calendar.vue"
+    import Calendar         from "../components/Reservation/calendar.vue"
+    import ReservationPanel from "../components/Reservation/reservationPanel.vue"
 
     export default {
         name: 'Reservation',
 
         components: {
-            Calendar
+            Calendar,
+            ReservationPanel
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    #main {
-      width: 100%;
-    }
-
-    .orderContainer {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .logo {
-      height: 6em;
-      padding: 1.5em;
-      will-change: filter;
-      transition: filter 300ms;
+    .reservation {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        margin: 35px;
     }
 </style>
