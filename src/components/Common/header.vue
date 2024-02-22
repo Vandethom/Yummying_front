@@ -1,7 +1,8 @@
 <template>
     <div id="header">
-      <img src="../../assets/yummying.logo.svg" class="logo" alt="Vite logo" />
-
+      <router-link :to="{ name: 'home' }">
+        <img src="../../assets/yummying.logo.svg" class="logo" alt="Vite logo" />
+      </router-link>
       <div class="menu_options">
         <router-link :to="{ name: 'home'}">
           <p>Accueil</p>
@@ -15,7 +16,9 @@
         <router-link :to="{ name: 'account'}">
           <p>Mon compte</p>
         </router-link>
-        <img src="../../assets/basket.icon.svg" class="basket_icon" alt="Basket Icon" />
+        <router-link :to="{ name: 'cart' }">
+          <img src="../../assets/basket.icon.svg" class="basket_icon" alt="Basket Icon" />
+        </router-link>
       </div>
     </div>
 </template>
@@ -45,9 +48,21 @@
         .menu_options {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
-          gap: 2.5rem;
+          gap: 24px;
+          margin-right: 2.5vw;
           color: black;
           cursor: pointer;
+
+          p {
+            color: black;
+            font-weight: bold;
+            width: 100px;
+
+            &:hover {
+              text-decoration: underline;
+              color: rgba(black, 0.5);
+            }
+          }
         }
 
         .basket_icon {

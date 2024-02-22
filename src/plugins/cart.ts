@@ -1,5 +1,5 @@
-import { useOrderStore } from '../store/store'
-import Recipe            from '../plugins/recipe'
+import { useOrderStore } from '../store/order'
+import Recipe            from '../types/recipe'
 
 export default class Cart {
     static async addItemToCart(item: Recipe): Promise<void> {

@@ -33,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/Reservation.vue')
     },
     {
+        path: '/cart',
+        name: 'cart',
+        component: () => import('../views/Cart.vue')
+    },
+    {
         path: '/:catchAll(.*)',
         name: 'pageNotFound',
         component: () => import('../views/PageNotFound.vue')

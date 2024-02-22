@@ -28,7 +28,7 @@
 import Cart              from '../../plugins/cart'
 import CartItem          from '../../plugins/cart'
 import Recipe            from '../../types/recipe'
-import { useOrderStore } from '../../store/store'
+import { useOrderStore } from '../../store/order'
 
 export default {
     name: 'OrderDetails',

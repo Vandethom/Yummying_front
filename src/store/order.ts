@@ -1,9 +1,11 @@
-import { defineStore } from 'pinia'
-import Recipe          from '../types/recipe'
+import { defineStore }  from 'pinia'
+import Recipe           from '../types/recipe'
+import Reservation      from '../types/reservation'
 
 export const useOrderStore = defineStore('order', {
   state: () => ({
-      cart: [] as Recipe[]
+      cart       : [] as Recipe[],
+      reservation: {} as Reservation
   }),
 
   actions: {

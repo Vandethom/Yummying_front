@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios       from 'axios'
+import Reservation from '../types/reservation.ts'
 
 export default class Api {
     static async getRecipesByCategory(cat: String) {
@@ -15,6 +16,13 @@ export default class Api {
         const parsedData = JSON.parse(JSON.stringify(data.data))
 
         return parsedData
+    }
+
+    static async makeReservation(reservation: Reservation) {
+        const data    = reservation
+        const booking = await axios.post(`http://localhost:8080/reservation`, data)
+
+        return booking
     }
 }
 
