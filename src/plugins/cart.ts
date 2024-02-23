@@ -13,6 +13,24 @@ export default class Cart {
         }
         
             order.push(newItem)
+
+            switch (item.category) {
+                case 'entrée':
+                  order.starters += 1
+                  break
+                case 'plat':
+                  order.dishes += 1
+                  break
+                case 'dessert':
+                  order.desserts += 1
+                  break
+                case 'boisson':
+                  order.drinks += 1
+                  break
+                default:
+                  console.log('Case should not happen. Category must be starter, dish or dessert')
+                  break
+              }
     }
 
     static async fetch(): Promise<Recipe[]> {

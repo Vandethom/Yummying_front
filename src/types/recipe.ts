@@ -5,11 +5,11 @@ export default class Recipe {
     category: string
     quantity: number
 
-    constructor(id: string, title: string, price: number, category: string) {
+    constructor(id: string, title: string, price: number, category: string, quantity: number) {
         this._id      = id
         this.title    = title
         this.price    = price
         this.category = category
-        this.quantity = 1
+        this.quantity = quantity
     }
 }
