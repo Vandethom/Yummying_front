@@ -1,23 +1,29 @@
 <template>
     <div id="orderDetails">
         <p>Panier</p>
+        <h4 v-if="this.order.starters > 0">Entrées</h4>
+        <h4 v-if="this.order.dishes > 0">Plats</h4>
+        <h4 v-if="this.order.desserts > 0">Desserts</h4>
+        <h4 v-if="this.order.drinks > 0">Boissons</h4>
         <div 
             class="orderItem"
             v-for="item in cart"
             :key="item._id"
+            :id="item._id"
+            :ref="item._id"
         >
             <p>{{ item.title }}</p>
             <div class="ItemQuantity">
                 <p class="sign"
-                   @click="increment(item._id)"
-                >
-                    +
-                </p>
-                <p>{{ item.quantity }}</p>
-                <p class="sign"
                    @click="decrement(item._id)"
                 >
                     -
+                </p>
+                <p>{{ item.quantity }}</p>
+                <p class="sign"
+                   @click="increment(item._id)"
+                >
+                    +
                 </p>
             </div>
         </div>
@@ -35,7 +41,8 @@ export default {
 
     data() {
         return {
-            cart: [] as CartItem[],
+            cart: [] as Recipe[],
+            starters: [] as Recipe[],
             item: {} as Recipe,
             order: useOrderStore()
         }
@@ -45,6 +52,14 @@ export default {
         this.fetchCart()
     },
 
+    computed: {
+        sortStarters() {
+            const starterssss = this.cart.find(item => item.category === 'entrée')
+            
+            this.starters.push(starterssss)
+        }
+    },
+
     methods: {
         async fetchCart(): Promise<Cart> {
             this.cart = await Cart.fetch()
@@ -52,7 +67,7 @@ export default {
             return this.cart
         },
 
-        increment(id: String) {   
+        increment(id: string) {   
             this.order.increment(id)
         },
 
