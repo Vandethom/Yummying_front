@@ -13,7 +13,7 @@ export const useBookingStore = defineStore('booking', {
         numberOfGuests: number, 
         emailAddress  : string,
         postalAddress : string,
-        phoneNumber   : number): void {
+        phoneNumber   : string): void {
             const id: string = uuidv4()
             
             this.reservation = {

@@ -1,9 +1,17 @@
 <template>
-    <div class="about"><p>Hello from about</p></div>
+    <Map />
 </template>
 
-<script setup lang="ts">
+<script>
+import Map from "../components/Map/map.vue"
 
+export default {
+    name: 'MapView',
+
+    components: {
+        Map,
+    }
+}
 </script>
 
 <style lang="scss" scoped>

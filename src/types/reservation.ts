@@ -4,7 +4,7 @@ export default class Reservation {
     numberOfGuests: number
     emailAddress  : string
     postalAddress : string
-    phoneNumber   : number
+    phoneNumber   : string
 
 
     constructor(
@@ -12,8 +12,8 @@ export default class Reservation {
         date          : Date,
         numberOfGuests: number, 
         emailAddress  : string,
-        postalAddress :  string,
-        phoneNumber   : number
+        postalAddress : string,
+        phoneNumber   : string
 
         ) {
             this.id             = id

@@ -98,11 +98,24 @@ export default {
                     alert('Veuillez remplir l\'adresse email.')
                     break
 
+                case (!this.reservation.emailAddress.includes('@')
+                   ||((!this.reservation.emailAddress.includes('.fr'))
+                   &&(!this.reservation.emailAddress.includes('.com'))
+                   &&(!this.reservation.emailAddress.includes('.uk'))
+                   &&(!this.reservation.emailAddress.includes('.de'))
+                   &&(!this.reservation.emailAddress.includes('.cc'))
+                   &&(!this.reservation.emailAddress.includes('.org')))):
+                    alert('Veuillez saisir un email au bon format.')
+                    break;
+
                 case !this.reservation.phoneNumber:
                     alert('Veuillez remplir le numéro de téléphone.')
                     break
-                    
-                    
+
+                case this.reservation.phoneNumber.length < 10:
+                    alert('Veuillez saisir un numéro de téléphone correct.')
+                    break
+                                        
                 default:
                     this.booking.bookReservation(
                         this.reservation.pickedDate,
