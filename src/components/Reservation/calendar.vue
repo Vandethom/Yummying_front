@@ -1,11 +1,10 @@
 <template>
-    <div>
-        <VDatePicker class="calendar" 
-                     expanded
+    <div class="calendarContainer">
+        <VDatePicker class="calendar"
                      is24hr
                      :mode="mode"
                      :rules="rules"
-                     v-model="reservation.pickedDate">
+                     v-model="reservation.date">
             <template #footer>
                 <form class="reservationDetails" ref="form">
                     <h4>Autres détails sur la réservartion</h4>
@@ -64,7 +63,7 @@ export default {
             booking: useBookingStore(),
 
             reservation: {
-                pickedDate    : ref(new Date()),
+                date    : ref(new Date()),
                 numberOfGuests: null,
                 postalAddress : null,
                 emailAddress  : null,
@@ -82,7 +81,7 @@ export default {
 
         bookReservation() {
             switch (true) {
-                case !this.bookingIsValid(this.reservation.pickedDate):
+                case !this.bookingIsValid(this.reservation.date):
                     alert('La date ne peut être antérieure à celle du jour.')
                     break
                 
@@ -105,7 +104,7 @@ export default {
                     
                 default:
                     this.booking.bookReservation(
-                        this.reservation.pickedDate,
+                        this.reservation.date,
                         this.reservation.numberOfGuests,
                         this.reservation.emailAddress,
                         this.reservation.postalAddress,
@@ -123,64 +122,68 @@ export default {
 </script>
 
 <style lang="scss">
-    button {
-        background-color: rgb(238, 235, 235);
-        color: black;
-    }
-    
-    .buttonContainer {
-        width: 105px;
-        margin: 8px auto;
+    .calendarContainer {
+        display: flex;
 
-        #footerButton {
-            background-color: rgb(118, 91, 238);
+        button {
+            background-color: rgb(238, 235, 235);
+            color: black;
+        }
 
-            &:hover {
-                background-color: rgba(118, 91, 238, 0.8);
+        .buttonContainer {
+            width: 105px;
+            margin: 8px auto;
+
+            #footerButton {
+                background-color: rgb(118, 91, 238);
+
+                &:hover {
+                    background-color: rgba(118, 91, 238, 0.8);
+                }
             }
         }
-    }
 
-    .vc-container .vc-weekday-1, .vc-container .vc-weekday-7 {
-      color: #8791bd;
-    }
+        .vc-container .vc-weekday-1, .vc-container .vc-weekday-7 {
+          color: #8791bd;
+        }
 
-    .calendar {
-        background-color: white;
-        color: black;
-        margin: auto;
-    }
+        .calendar {
+            background-color: white;
+            color: black;
+            margin: auto;
+        }
 
-    .reservationDetails {
-        width: 630px;
-        height: 220px;
-        border: 1px solid rgba($color: #000000, $alpha: 0.3);
-        margin: auto;
-        border-radius: 5px;
-        background-color: white;
-        color: black;
+        .reservationDetails {
+            width: 630px;
+            height: 220px;
+            border: 1px solid rgba($color: #000000, $alpha: 0.3);
+            margin: auto;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
 
-        h4, p {
-                margin: 0 12px;
-            }
-        .inputContainer {
-            padding: 0 12px;
-            display: flex;
-            align-items: center;
+            h4, p {
+                    margin: 0 12px;
+                }
+            .inputContainer {
+                padding: 0 12px;
+                display: flex;
+                align-items: center;
 
 
-            input {
-                height: 20px;
-                background-color: white;
-                color: black;
-                margin: 0 12px;
-                border: none;
-                border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
-            }
+                input {
+                    height: 20px;
+                    background-color: white;
+                    color: black;
+                    margin: 0 12px;
+                    border: none;
+                    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+                }
 
-            input::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-               -webkit-appearance: none;
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                   -webkit-appearance: none;
+                }
             }
         }
     }
