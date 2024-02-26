@@ -1,15 +1,18 @@
 <template>
     <Map />
+    <AboutInformations />
 </template>
 
 <script>
-import Map from "../components/Map/map.vue"
+import AboutInformations from "../components/About/aboutInformations.vue"
+import Map               from "../components/About/map.vue"
 
 export default {
     name: 'MapView',
 
     components: {
-        Map,
+        AboutInformations,
+        Map
     }
 }
 </script>

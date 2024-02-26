@@ -7,6 +7,8 @@
 
 <script>
 import { onMounted, reactive, ref } from 'vue';
+import distance from 'turf-distance'
+import {point}    from '@turf/helpers'
 
 export default {
     name: 'Map',
@@ -15,8 +17,13 @@ export default {
       const mapRef = ref(null)
 
       onMounted(() => {
-        const tt    = window.tt
-        const focus = { lat: 48.89628843249088, lng: 2.220891567380876 }
+        const tt          = window.tt
+        const focus       = { lat: 48.89628843249088, lng: 2.220891567380876 }
+        const destination = { lat: 48.74007173047738, lng: 2.4261560538778206 }
+        const from        = point([48.89628843249088, 2.220891567380876])
+        const to          = point([48.74007173047738, 2.4261560538778206])
+
+        console.log('This is quite a distance dear : ', distance(from, to), 'km')
 
         var map = tt.map({
             key      : import.meta.env.VITE_TOMTOM_KEY,
@@ -41,7 +48,7 @@ export default {
 
         marker.setPopup(popup).togglePopup()
 
-        // map.addControl(new tt.FullScreenControl())
+        map.addControl(new tt.FullscreenControl())
         map.addControl(new tt.NavigationControl())
       })
 
