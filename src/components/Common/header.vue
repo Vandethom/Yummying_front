@@ -32,13 +32,13 @@
     #header {
         display: grid;
         grid-template-columns: 1fr fit-content(40%);
+        background-color: #ffffff;
         align-items: center;
-        gap: 12rem;
-        margin: 0;
-        top:    0;
-        left:   0;
-        height: 105px;
-        background-color: #fdf9f6;
+        gap        : 12rem;
+        margin     : 0;
+        top        : 0;
+        left       : 0;
+        height     : 105px;
 
         .logo {
             margin-left: 25%;
