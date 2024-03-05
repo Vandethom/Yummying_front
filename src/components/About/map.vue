@@ -6,67 +6,62 @@
 
 
 <script>
-import { onMounted, reactive, ref } from 'vue';
-import distance                     from 'turf-distance'
+import { onMounted, ref } from 'vue';
 import {point}                      from '@turf/helpers'
+import distance                     from 'turf-distance'
 
 export default {
     name: 'Map',
     
     setup() {
-      const mapRef = ref(null)
+        const mapRef = ref(null)
 
-      onMounted(() => {
-        const tt          = window.tt
-        const focus       = { lat: 48.89628843249088, lng: 2.220891567380876 }
-        const destination = { lat: 48.74007173047738, lng: 2.4261560538778206 }
-        const from        = point([48.89628843249088, 2.220891567380876])
-        const to          = point([48.74007173047738, 2.4261560538778206])
+        onMounted(() => {
+          const tt          = window.tt
+          const focus       = { lat: 48.89628843249088, lng: 2.220891567380876 }
+          const from        = point([48.89628843249088, 2.220891567380876])
+          const to          = point([48.74007173047738, 2.4261560538778206])
 
-        console.log('This is quite a distance dear : ', distance(from, to), 'km')
-        
-        var map = tt.map({
-            key      : import.meta.env.VITE_TOMTOM_KEY,
-            container: mapRef.value,
-            center   : focus,
-            zoom     : 15
-        })
+          console.log('This is quite a distance dear : ', distance(from, to), 'km')
 
-
-        var map = tt.map({
-            key      : import.meta.env.VITE_TOMTOM_KEY,
-            container: mapRef.value,
-            center   : focus,
-            zoom     : 15
-        })
-
-
-
+          var map = tt.map({
+              key      : import.meta.env.VITE_TOMTOM_KEY,
+              container: mapRef.value,
+              center   : focus,
+              zoom     : 12
+          })
 
         map.on("load", function () {
-          map.addLayer({
-  id: "overlay",
-  type: "circle",
-  source: {
-    type: "geojson",
-    data: {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [2.4261560538778206, 48.74007173047738], // Note: The coordinates are in [longitude, latitude] order
-      },
-    },
-  },
-  paint: {
-    "circle-color": "#db356c",
-    "circle-opacity": 0.5,
-    "circle-radius": 5000,  // Radius in meters
-    "circle-stroke-color": "black",
-    "circle-stroke-width": 1,
-  },
-});
-        });
+            const initialZoom = map.getZoom();
 
+            map.addLayer({
+                id: "overlay",
+                type: "circle",
+                source: {
+                  type: "geojson",
+                  data: {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [2.220891567380876, 48.89628843249088],
+                    },
+                  },
+                },
+                paint: {
+                  "circle-color": "#add8e6",
+                  "circle-opacity": 0.3,
+                  "circle-radius": 500,  // Initial size in meters
+                  "circle-stroke-color": "black",
+                  "circle-stroke-width": 1,
+                },
+            })  ;
+
+            map.on("zoom", function () {
+                const currentZoom = map.getZoom();
+                const radiusAtCurrentZoom = (500 * Math.pow(2, currentZoom - initialZoom));
+                map.setPaintProperty("overlay", "circle-radius", radiusAtCurrentZoom);
+            });
+          });
 
 
 
